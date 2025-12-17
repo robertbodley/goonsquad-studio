@@ -3,10 +3,6 @@ main = "src/index.ts"
 compatibility_date = "2023-12-01"
 account_id = "d001056151c5f5088cb383308987d0b1"
 
-routes = [
-  { pattern = "api.goonsquad.studio", custom_domain = true }
-]
-
 [dev]
 port = 8787
 inspector_port = 9229
