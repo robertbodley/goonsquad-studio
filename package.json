@@ -2,9 +2,11 @@
   "name": "__PROJECT_NAME__",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "turbo run dev --parallel --ui=tui",
+    "dev": "node scripts/dev-with-queues.js",
     "build": "turbo run build",
+    "deploy": "turbo run deploy",
     "lint": "turbo run lint",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
@@ -13,7 +15,11 @@
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "turbo": "^2.3.3"
+    "chokidar": "^5.0.0",
+    "esbuild": "^0.27.2",
+    "miniflare": "^4.20251213.0",
+    "turbo": "^2.3.3",
+    "wrangler": "^3.22.1"
   },
   "packageManager": "pnpm@9.15.0",
   "engines": {

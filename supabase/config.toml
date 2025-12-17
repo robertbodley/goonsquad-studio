@@ -4,42 +4,40 @@ project_id = "local"
 
 [api]
 enabled = true
-port = 54321
+port = 54421
 schemas = ["public"]
 extra_search_path = ["public"]
 max_rows = 1000
 
 [db]
-port = 54322
-shadow_port = 54320
+port = 54422
+shadow_port = 54420
 major_version = 15
 
 [db.pooler]
 enabled = false
-port = 54329
+port = 54429
 pool_mode = "transaction"
 default_pool_size = 20
 max_client_conn = 100
 
 [realtime]
 enabled = true
-port = 54323
 ip_version = "IPv4"
 
 [studio]
 enabled = true
-port = 54324
+port = 54424
 api_url = "http://localhost"
 
 [inbucket]
 enabled = true
-port = 54325
-smtp_port = 54326
-pop3_port = 54327
+port = 54425
+smtp_port = 54426
+pop3_port = 54427
 
 [storage]
 enabled = true
-port = 54328
 file_size_limit = "50MiB"
 
 [auth]

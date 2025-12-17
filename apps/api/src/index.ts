@@ -13,7 +13,7 @@ const app = new Hono<{ Bindings: Bindings }>();
 
 // Enable CORS for local development
 app.use('/*', cors({
-  origin: ['http://localhost:5173'],
+  origin: (origin) => origin, // Allow all origins in dev
   credentials: true,
 }));
 
@@ -46,7 +46,9 @@ app.post('/jobs', async (c) => {
     );
 
     // Enqueue message
+    console.log(`[API] Sending job ${job.id} to queue`);
     await c.env.JOB_QUEUE.send({ jobId: job.id! });
+    console.log(`[API] Job ${job.id} queued successfully`);
 
     return c.json({ job }, 201);
   } catch (error) {

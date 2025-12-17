@@ -19,10 +19,20 @@ try {
 
   const status = JSON.parse(output);
 
-  // Extract values
-  const apiUrl = status.find((s) => s.name === 'API URL')?.value || '';
-  const anonKey = status.find((s) => s.name === 'anon key')?.value || '';
-  const serviceRoleKey = status.find((s) => s.name === 'service_role key')?.value || '';
+  // Handle both array format (old CLI) and object format (new CLI)
+  let apiUrl, anonKey, serviceRoleKey;
+
+  if (Array.isArray(status)) {
+    // Old format: array of objects
+    apiUrl = status.find((s) => s.name === 'API URL')?.value || '';
+    anonKey = status.find((s) => s.name === 'anon key')?.value || '';
+    serviceRoleKey = status.find((s) => s.name === 'service_role key')?.value || '';
+  } else {
+    // New format: nested object
+    apiUrl = status.api_url || status.API_URL || '';
+    anonKey = status.anon_key || status.ANON_KEY || '';
+    serviceRoleKey = status.service_role_key || status.SERVICE_ROLE_KEY || '';
+  }
 
   // Generate apps/web/.env.local
   const webEnv = `VITE_SUPABASE_URL=${apiUrl}

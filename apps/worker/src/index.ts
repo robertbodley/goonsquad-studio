@@ -60,8 +60,6 @@ async function processJob(jobId: string, env: Bindings): Promise<void> {
 
 export default {
   async queue(batch: MessageBatch<QueueMessage>, env: Bindings): Promise<void> {
-    console.log(`Processing batch of ${batch.messages.length} messages`);
-
     for (const message of batch.messages) {
       await processJob(message.body.jobId, env);
       message.ack();
