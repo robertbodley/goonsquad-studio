@@ -1,0 +1,15 @@
+node_modules
+dist
+build
+.turbo
+.env
+.env.local
+.dev.vars
+*.log
+.DS_Store
+.wrangler
+.vercel
+
+# Supabase
+.branches
+.temp
