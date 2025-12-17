@@ -44,7 +44,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          VITE_API_URL: https://api.${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.workers.dev
+          VITE_API_URL: ${{ secrets.API_URL }}
 
       - name: Deploy API worker
         uses: cloudflare/wrangler-action@v3
@@ -75,4 +75,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/web/dist --project-name=__PROJECT_NAME__-web
+          command: pages deploy apps/web/dist --project-name=goonsquad-studio-web
