@@ -208,7 +208,7 @@ function App() {
                 <p>
                   <strong>Created:</strong> {new Date(job.created_at).toLocaleString()}
                 </p>
-                {job.result && (
+                {job.result != null && (
                   <p>
                     <strong>Result:</strong> {JSON.stringify(job.result)}
                   </p>
