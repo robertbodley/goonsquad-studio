@@ -8,7 +8,7 @@ port = 8787
 inspector_port = 9229
 
 [vars]
-SUPABASE_URL = "https://placeholder.supabase.co"
+SUPABASE_URL = "https://kvmqydhrmdynyyaiojfs.supabase.co"
 
 [[queues.producers]]
 queue = "jobs"

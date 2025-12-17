@@ -4,7 +4,7 @@ compatibility_date = "2023-12-01"
 account_id = "d001056151c5f5088cb383308987d0b1"
 
 [vars]
-SUPABASE_URL = "https://placeholder.supabase.co"
+SUPABASE_URL = "https://kvmqydhrmdynyyaiojfs.supabase.co"
 
 [[queues.consumers]]
 queue = "jobs"

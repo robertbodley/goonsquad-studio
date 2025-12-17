@@ -55,8 +55,10 @@ jobs:
           workingDirectory: apps/api
           secrets: |
             SUPABASE_SERVICE_ROLE_KEY
+            SUPABASE_JWT_SECRET
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_JWT_SECRET: ${{ secrets.SUPABASE_JWT_SECRET }}
 
       - name: Deploy queue consumer worker
         uses: cloudflare/wrangler-action@v3

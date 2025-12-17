@@ -8,7 +8,7 @@ interface JWTPayload {
   iat?: number;
 }
 
-export async function verifySupabaseJWT(token: string, supabaseUrl: string): Promise<JWTPayload | null> {
+export async function verifySupabaseJWT(token: string, supabaseUrl: string, jwtSecret: string): Promise<JWTPayload | null> {
   try {
     // Extract JWT parts
     const parts = token.split('.');
@@ -26,10 +26,9 @@ export async function verifySupabaseJWT(token: string, supabaseUrl: string): Pro
       return null;
     }
 
-    // Check if this is HS256 (local Supabase) or RS256 (production)
+    // Check if this is HS256 or RS256
     if (header.alg === 'HS256') {
-      // Local Supabase uses HS256 with a fixed JWT secret
-      const jwtSecret = 'super-secret-jwt-token-with-at-least-32-characters-long';
+      // Supabase uses HS256 with JWT secret
 
       const encoder = new TextEncoder();
       const keyData = encoder.encode(jwtSecret);
@@ -120,8 +119,9 @@ export async function requireAuth(c: Context): Promise<JWTPayload | Response> {
 
   const token = authHeader.substring(7);
   const supabaseUrl = c.env.SUPABASE_URL;
+  const jwtSecret = c.env.SUPABASE_JWT_SECRET;
 
-  const payload = await verifySupabaseJWT(token, supabaseUrl);
+  const payload = await verifySupabaseJWT(token, supabaseUrl, jwtSecret);
 
   if (!payload) {
     return c.json({ error: 'Invalid token' }, 401);

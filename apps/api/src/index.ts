@@ -6,6 +6,7 @@ import { createJob, getJob, getUserJobs } from './db';
 type Bindings = {
   SUPABASE_URL: string;
   SUPABASE_SERVICE_ROLE_KEY: string;
+  SUPABASE_JWT_SECRET: string;
   JOB_QUEUE: Queue<{ jobId: string }>;
 };
 
